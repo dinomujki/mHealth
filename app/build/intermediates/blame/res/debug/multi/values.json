@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/build/intermediates/res/merged/debug/values/values.xml",
+        "outputFile": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/src/main/res/values/dimens.xml",
+                    "file": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values\\dimens.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 164
                 },
                 "from": {
-                    "file": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/src/main/res/values/dimens.xml",
+                    "file": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values\\dimens.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 217
                 },
                 "from": {
-                    "file": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -68,7 +68,7 @@
                     "endOffset": 277
                 },
                 "from": {
-                    "file": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -87,7 +87,7 @@
                     "endOffset": 332
                 },
                 "from": {
-                    "file": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -106,7 +106,7 @@
                     "endOffset": 372
                 },
                 "from": {
-                    "file": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -126,7 +126,7 @@
                     "endOffset": 812
                 },
                 "from": {
-                    "file": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -147,7 +147,7 @@
                     "endOffset": 1115
                 },
                 "from": {
-                    "file": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/src/main/res/values/styles.xml",
+                    "file": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values\\styles.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -168,7 +168,7 @@
                     "endOffset": 1275
                 },
                 "from": {
-                    "file": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/src/main/res/values/styles.xml",
+                    "file": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values\\styles.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -182,7 +182,7 @@
         ]
     },
     {
-        "outputFile": "/Users/Mujki/Desktop/EECS 395/BandHeartRateApp2/app/build/intermediates/res/merged/debug/values/values.xml",
+        "outputFile": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -193,7 +193,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "/Users/Mujki/Desktop/EECS 395/BandHeartRateApp2/app/src/main/res/values/dimens.xml",
+                    "file": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values\\dimens.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -212,7 +212,7 @@
                     "endOffset": 164
                 },
                 "from": {
-                    "file": "/Users/Mujki/Desktop/EECS 395/BandHeartRateApp2/app/src/main/res/values/dimens.xml",
+                    "file": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values\\dimens.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -231,7 +231,7 @@
                     "endOffset": 217
                 },
                 "from": {
-                    "file": "/Users/Mujki/Desktop/EECS 395/BandHeartRateApp2/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -250,7 +250,7 @@
                     "endOffset": 277
                 },
                 "from": {
-                    "file": "/Users/Mujki/Desktop/EECS 395/BandHeartRateApp2/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -269,7 +269,7 @@
                     "endOffset": 332
                 },
                 "from": {
-                    "file": "/Users/Mujki/Desktop/EECS 395/BandHeartRateApp2/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
@@ -288,7 +288,7 @@
                     "endOffset": 372
                 },
                 "from": {
-                    "file": "/Users/Mujki/Desktop/EECS 395/BandHeartRateApp2/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -308,7 +308,7 @@
                     "endOffset": 812
                 },
                 "from": {
-                    "file": "/Users/Mujki/Desktop/EECS 395/BandHeartRateApp2/app/src/main/res/values/strings.xml",
+                    "file": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -329,7 +329,7 @@
                     "endOffset": 1115
                 },
                 "from": {
-                    "file": "/Users/Mujki/Desktop/EECS 395/BandHeartRateApp2/app/src/main/res/values/styles.xml",
+                    "file": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values\\styles.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -350,7 +350,189 @@
                     "endOffset": 1275
                 },
                 "from": {
-                    "file": "/Users/Mujki/Desktop/EECS 395/BandHeartRateApp2/app/src/main/res/values/styles.xml",
+                    "file": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 534,
+                        "endLine": 17,
+                        "endColumn": 12,
+                        "endOffset": 691
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 92,
+                        "endColumn": 57,
+                        "endOffset": 145
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 113,
+                    "endColumn": 55,
+                    "endOffset": 164
+                },
+                "from": {
+                    "file": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 151,
+                        "endColumn": 55,
+                        "endOffset": 202
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 169,
+                    "endColumn": 52,
+                    "endOffset": 217
+                },
+                "from": {
+                    "file": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 119,
+                        "endColumn": 52,
+                        "endOffset": 167
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 222,
+                    "endColumn": 59,
+                    "endOffset": 277
+                },
+                "from": {
+                    "file": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 58,
+                        "endColumn": 59,
+                        "endOffset": 113
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 282,
+                    "endColumn": 54,
+                    "endOffset": 332
+                },
+                "from": {
+                    "file": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 663,
+                        "endColumn": 54,
+                        "endOffset": 713
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 337,
+                    "endColumn": 39,
+                    "endOffset": 372
+                },
+                "from": {
+                    "file": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 618,
+                        "endColumn": 39,
+                        "endOffset": 653
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 377,
+                    "endLine": 15,
+                    "endColumn": 72,
+                    "endOffset": 812
+                },
+                "from": {
+                    "file": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 178,
+                        "endLine": 13,
+                        "endColumn": 72,
+                        "endOffset": 613
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 817,
+                    "endLine": 22,
+                    "endColumn": 12,
+                    "endOffset": 1115
+                },
+                "from": {
+                    "file": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values\\styles.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 191,
+                        "endLine": 12,
+                        "endColumn": 12,
+                        "endOffset": 493
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 1120,
+                    "endLine": 25,
+                    "endColumn": 12,
+                    "endOffset": 1275
+                },
+                "from": {
+                    "file": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values\\styles.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,

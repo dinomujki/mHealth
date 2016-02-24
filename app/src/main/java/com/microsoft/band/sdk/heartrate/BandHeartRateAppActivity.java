@@ -34,6 +34,9 @@ import com.microsoft.band.sensors.BandRRIntervalEvent;
 import com.microsoft.band.sensors.BandRRIntervalEventListener;
 import com.microsoft.band.sensors.HeartRateConsentListener;
 
+import android.content.Intent;
+import android.widget.Toast;
+import android.util.Log;
 import android.os.Bundle;
 import android.view.View;
 import android.app.Activity;
@@ -41,10 +44,22 @@ import android.os.AsyncTask;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.parse.GetCallback;
 import com.parse.ParseObject;
 import com.parse.Parse;
+import com.parse.ParseQuery;
+import com.parse.ParseException;
 
-public class BandHeartRateAppActivity extends Activity {
+//YouTube
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayer.Provider;
+import com.google.android.youtube.player.YouTubePlayerView;
+
+//public class BandHeartRateAppActivity extends Activity {
+public class BandHeartRateAppActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
 	private BandClient client = null;
 	private Button btnStart, btnConsent;
@@ -56,6 +71,18 @@ public class BandHeartRateAppActivity extends Activity {
     private int bpm;
     private double gsr;
     private double rr;
+
+    //video vars
+    String theID;
+    public static final int RECOVERY_REQUEST = 1;
+    private YouTubePlayerView youTubeView;
+
+    public final class Config {
+        private Config() {
+        }
+
+        public static final String YOUTUBE_API_KEY = "AIzaSyDL6_lgg5HEODCoIKk2vzgb2gFFPVUBDYQ";
+    }
 
 	private BandHeartRateEventListener mHeartRateEventListener = new BandHeartRateEventListener() {
         @Override
@@ -106,21 +133,43 @@ public class BandHeartRateAppActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //initialize YouTube player view
+        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
 
 		// [Optional] Power your app with Local Datastore. For more info, go to
 		// https://parse.com/docs/android/guide#local-datastore
 		Parse.enableLocalDatastore(this);
-
 		Parse.initialize(this);
 
-        setContentView(R.layout.activity_main);
+        //creating a query for retrieving YouTube vids
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("url");
+        Log.d("query", "made the query");
+        query.whereEqualTo("objectId", "61WL7CRujY"); // to grab the right one - will change later
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (object == null) {
+                    Log.d("read", "failed");
+                }
+                else {
+                    //you got it
+                    String theID = object.getString("vidID");
+                    setTheID(theID);
+                    Log.d("read", "passed");
+                }
+            }
+        });
 
-        txtStatus = (TextView) findViewById(R.id.txtStatus);
-        txtbpm = (TextView) findViewById(R.id.txtbpm);
+        //SHAWN: fix from here until...
+//        txtStatus = (TextView) findViewById(R.id.txtStatus);
+//        txtbpm = (TextView) findViewById(R.id.txtbpm);
 
-        txtrr = (TextView) findViewById(R.id.txtrr);
+//        txtrr = (TextView) findViewById(R.id.txtrr);
 
-        txtgsr = (TextView) findViewById(R.id.txtgsr);
+//        txtgsr = (TextView) findViewById(R.id.txtgsr);
 
         btnStart = (Button) findViewById(R.id.btnStart);
         btnStart.setOnClickListener(new OnClickListener() {
@@ -142,7 +191,44 @@ public class BandHeartRateAppActivity extends Activity {
                 new GsrSubscriptionTask().execute();
 			}
 		});
+
+        //...here
     }
+
+    public void setTheID(String myID) {
+        theID = myID;
+        Log.d("set", "set the ID!");
+    }
+
+    @Override
+    public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
+        Log.d("success", "success");
+
+        if (!wasRestored) {
+            Log.d("id", theID);
+            player.cueVideo(theID); // Plays https://www.youtube.com/watch?v=theID
+        }
+    }
+
+    @Override
+    public void onInitializationFailure(Provider provider, YouTubeInitializationResult errorReason) {
+        String error = String.format("Error initializing YouTube player", errorReason.toString());
+        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RECOVERY_REQUEST) {
+            //retry initialization
+            getYouTubePlayerProvider().initialize(Config.YOUTUBE_API_KEY, this);
+        }
+    }
+
+    protected Provider getYouTubePlayerProvider() {
+        return youTubeView;
+    }
+
+
 	
 	@Override
 	protected void onResume() {
