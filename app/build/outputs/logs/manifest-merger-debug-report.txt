@@ -50,7 +50,7 @@ ADDED from C:\Users\Samantha\Documents\mHealth\mHealth\app\src\main\AndroidManif
 activity#com.microsoft.band.sdk.heartrate.BandHeartRateAppActivity
 ADDED from C:\Users\Samantha\Documents\mHealth\mHealth\app\src\main\AndroidManifest.xml:21:9-30:20
 	android:screenOrientation
-		ADDED from C:\Users\Samantha\Documents\mHealth\mHealth\app\src\main\AndroidManifest.xml:23:13-50
+		ADDED from C:\Users\Samantha\Documents\mHealth\mHealth\app\src\main\AndroidManifest.xml:23:13-49
 	android:label
 		ADDED from C:\Users\Samantha\Documents\mHealth\mHealth\app\src\main\AndroidManifest.xml:24:13-45
 	android:name
