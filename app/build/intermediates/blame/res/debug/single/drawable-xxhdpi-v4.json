@@ -1,10 +1,14 @@
 [
     {
-        "merged": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/ic_launcher.png",
-        "source": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/src/main/res/drawable-xxhdpi/ic_launcher.png"
+        "merged": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "/Users/Mujki/Desktop/EECS 395/BandHeartRateApp2/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/ic_launcher.png",
-        "source": "/Users/Mujki/Desktop/EECS 395/BandHeartRateApp2/app/src/main/res/drawable-xxhdpi/ic_launcher.png"
+        "merged": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
     }
 ]
