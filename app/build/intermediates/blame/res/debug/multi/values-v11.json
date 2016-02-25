@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
+        "outputFile": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 194
                 },
                 "from": {
-                    "file": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values-v11\\styles.xml",
+                    "file": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values-v11\\styles.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -26,7 +26,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
+        "outputFile": "/Users/Mujki/Desktop/mHealth/app/build/intermediates/res/merged/debug/values-v11/values-v11.xml",
         "map": [
             {
                 "to": {
@@ -38,7 +38,7 @@
                     "endOffset": 194
                 },
                 "from": {
-                    "file": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values-v11\\styles.xml",
+                    "file": "/Users/Mujki/Desktop/mHealth/app/src/main/res/values-v11/styles.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -52,7 +52,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
+        "outputFile": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
         "map": [
             {
                 "to": {
@@ -64,7 +64,33 @@
                     "endOffset": 194
                 },
                 "from": {
-                    "file": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values-v11\\styles.xml",
+                    "file": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values-v11\\styles.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 182,
+                        "endLine": 8,
+                        "endColumn": 12,
+                        "endOffset": 323
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/Mujki/Desktop/mHealth/C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 194
+                },
+                "from": {
+                    "file": "/Users/Mujki/Desktop/mHealth/C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values-v11\\styles.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,

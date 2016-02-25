@@ -15,18 +15,11 @@
         android:text="@string/steps" />
 
 
-    <Button
-        android:id="@+id/btnStart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/start" />
-    
-    <Button
-        android:id="@+id/btnConsent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/consent" />
-
+    <!--<Button-->
+        <!--android:id="@+id/btnStart"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/start" />-->
 
 
     <TextView

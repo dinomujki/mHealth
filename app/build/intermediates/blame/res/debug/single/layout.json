@@ -1,14 +1,18 @@
 [
     {
-        "merged": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
-        "source": "C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "/Users/Mujki/Desktop/mHealth/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/Mujki/Desktop/mHealth/app/src/main/res/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
-        "source": "C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "/Users/Mujki/Desktop/mHealth/C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "/Users/Mujki/Desktop/mHealth/C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
-        "source": "C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\layout\\activity_main.xml"
     }
 ]
