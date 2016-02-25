@@ -5,18 +5,7 @@
     android:layout_margin="15dp"
     android:orientation="vertical" >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal" >
 
-        <com.google.android.youtube.player.YouTubePlayerView
-            android:id="@+id/youtube_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
 
 
     <TextView
@@ -46,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="" />
 
-    <!--
+
     <TextView
         android:id="@+id/txtbpm"
         android:layout_width="match_parent"
@@ -63,7 +52,11 @@
         android:layout_height="wrap_content"
         android:text="" />
 
-        -->
+ <!--   <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/youtube_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+-->
 
 </LinearLayout>
 

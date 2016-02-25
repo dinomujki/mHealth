@@ -115,6 +115,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
             if (event != null) {
                 gsr = event.getResistance();
                 appendTogsr(Double.toString(gsr));
+                Log.d("gsr", Double.toString(gsr));
                 //appendToUI(String.format("Resistance = %d kOhms\n", event.getResistance()));
             }
         }
@@ -136,8 +137,8 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         setContentView(R.layout.activity_main);
 
         //initialize YouTube player view
-        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
-        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
+//        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+//        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
 
 		// [Optional] Power your app with Local Datastore. For more info, go to
 		// https://parse.com/docs/android/guide#local-datastore
@@ -164,12 +165,12 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         });
 
         //SHAWN: fix from here until...
-//        txtStatus = (TextView) findViewById(R.id.txtStatus);
-//        txtbpm = (TextView) findViewById(R.id.txtbpm);
+        txtStatus = (TextView) findViewById(R.id.txtStatus);
+        txtbpm = (TextView) findViewById(R.id.txtbpm);
 
-//        txtrr = (TextView) findViewById(R.id.txtrr);
+        txtrr = (TextView) findViewById(R.id.txtrr);
 
-//        txtgsr = (TextView) findViewById(R.id.txtgsr);
+        txtgsr = (TextView) findViewById(R.id.txtgsr);
 
         btnStart = (Button) findViewById(R.id.btnStart);
         btnStart.setOnClickListener(new OnClickListener() {
