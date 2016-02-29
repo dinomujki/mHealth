@@ -50,6 +50,7 @@ import com.parse.ParseObject;
 import com.parse.Parse;
 import com.parse.ParseQuery;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 
 //YouTube
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -58,11 +59,20 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+//Push notifications
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.widget.Toast;
+import android.os.Bundle;
+
+
 //public class BandHeartRateAppActivity extends Activity {
 public class BandHeartRateAppActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
+
 	private BandClient client = null;
-	private Button btnStart, btnConsent;
+	//private Button btnStart, btnConsent;
 	private TextView txtStatus;
 	private TextView txtbpm;
 	private TextView txtrr;
@@ -114,7 +124,6 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                 gsr = event.getResistance();
                 appendTogsr(Double.toString(gsr));
                 Log.d("gsr", Double.toString(gsr));
-                //appendToUI(String.format("Resistance = %d kOhms\n", event.getResistance()));
             }
         }
     };
@@ -133,7 +142,6 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         //initialize YouTube player view
 //        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
 //        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
@@ -141,7 +149,8 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 		// [Optional] Power your app with Local Datastore. For more info, go to
 		// https://parse.com/docs/android/guide#local-datastore
 		Parse.enableLocalDatastore(this);
-		Parse.initialize(this);
+        Parse.initialize(this, "ZfUSi76VMhVMTWCBD8gFLU1IEbz8aLJAF0Cthv8U", "h8u2gMlQOeE9AadEApx2RAdSDrenbrPiFTZqRMCn");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         //creating a query for retrieving YouTube vids
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("url");
