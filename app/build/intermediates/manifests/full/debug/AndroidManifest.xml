@@ -9,26 +9,10 @@
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="com.microsoft.band.service.access.BIND_BAND_SERVICE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <!--
-      GET_ACCOUNTS is only required for GCM on devices running Android lower than
-      4.0.4. You may leave out this permission if you are targetting 4.0.4+.
-    -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-
-    <!--
-      IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
-      to match your app's package name + ".permission.C2D_MESSAGE".
-    -->
-    <permission
-        android:name="com.microsoft.band.sdk.heartrate.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-
-    <uses-permission android:name="com.microsoft.band.sdk.heartrate.permission.C2D_MESSAGE" />
 
     <application
         android:allowBackup="true"
@@ -52,29 +36,6 @@
         <meta-data
             android:name="com.parse.CLIENT_KEY"
             android:value="h8u2gMlQOeE9AadEApx2RAdSDrenbrPiFTZqRMCn" />
-
-        <service android:name="com.parse.PushService" />
-
-        <receiver
-            android:name="com.parse.ParsePushBroadcastReceiver"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="com.parse.push.intent.RECEIVE" />
-                <action android:name="com.parse.push.intent.DELETE" />
-                <action android:name="com.parse.push.intent.OPEN" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name="com.parse.GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-
-<!--                   IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
-                <category android:name="com.microsoft.band.sdk.heartrate" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

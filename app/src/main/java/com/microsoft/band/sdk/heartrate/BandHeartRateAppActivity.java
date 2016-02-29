@@ -35,6 +35,7 @@ import com.microsoft.band.sensors.BandRRIntervalEventListener;
 import com.microsoft.band.sensors.HeartRateConsentListener;
 
 import android.content.Intent;
+import android.widget.Switch;
 import android.widget.Toast;
 import android.util.Log;
 import android.os.Bundle;
@@ -50,7 +51,6 @@ import com.parse.ParseObject;
 import com.parse.Parse;
 import com.parse.ParseQuery;
 import com.parse.ParseException;
-import com.parse.ParseInstallation;
 
 //YouTube
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -59,31 +59,33 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-//Push notifications
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.widget.Toast;
-import android.os.Bundle;
 
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 //public class BandHeartRateAppActivity extends Activity {
 public class BandHeartRateAppActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
-
 	private BandClient client = null;
-	//private Button btnStart, btnConsent;
+	private Button btnStart, btnConsent;
 	private TextView txtStatus;
 	private TextView txtbpm;
 	private TextView txtrr;
 	private TextView txtgsr;
 
-    private int bpm;
-    private double gsr;
-    private double rr;
+
+
+    private TextView switchStatus;
+    private Switch mySwitch;
+    private Boolean collectionMode;
+
+
+    private int bpm = 0;
+    private double gsr = 0.0;
+    private double rr = 0.0;
 
     //video vars
-    String theID;
+    String theID = "FmaJow1aLPI";
     public static final int RECOVERY_REQUEST = 1;
     private YouTubePlayerView youTubeView;
 
@@ -100,19 +102,8 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
             if (event != null) {
                 bpm = event.getHeartRate();
                 appendTobpm(Integer.toString(bpm));
+                Log.d("bpm", Integer.toString(bpm));
 
-                ParseObject testObject = new ParseObject("SensorData");
-                testObject.put("HeartRate", bpm);
-                testObject.put("GSR", gsr);
-                testObject.put("RR", rr);
-                testObject.saveInBackground();
-
-                if (bpm > 75 && rr > 1) {
-                    appendToUI("You are stressed, relax with some comedy.");
-                }
-                else {
-                    appendToUI("You're good! You don't appear stressed!");
-                }
             }
         }
     };
@@ -124,6 +115,20 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                 gsr = event.getResistance();
                 appendTogsr(Double.toString(gsr));
                 Log.d("gsr", Double.toString(gsr));
+
+                if (collectionMode&&(bpm>0)&&(rr>0)) {
+                    ParseObject testObject = new ParseObject("SensorData");
+                    testObject.put("HeartRate", bpm);
+                    testObject.put("GSR", gsr);
+                    testObject.put("RR", rr);
+                    testObject.saveInBackground();
+                }
+                if (bpm > 75 && rr > 1) {
+                    appendToUI("You are stressed, relax with some comedy.");
+                }
+                else {
+                    appendToUI("You're good! You don't appear stressed!");
+                }
             }
         }
     };
@@ -134,6 +139,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
             if (bandRRIntervalEvent != null) {
                 rr = bandRRIntervalEvent.getInterval();
                 appendTorr(Double.toString(rr));
+                Log.d("rr", Double.toString(rr));
             }
         }
     };
@@ -142,15 +148,16 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //initialize YouTube player view
-//        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
-//        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
 
-		// [Optional] Power your app with Local Datastore. For more info, go to
-		// https://parse.com/docs/android/guide#local-datastore
-		Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "ZfUSi76VMhVMTWCBD8gFLU1IEbz8aLJAF0Cthv8U", "h8u2gMlQOeE9AadEApx2RAdSDrenbrPiFTZqRMCn");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
+        // [Optional] Power your app with Local Datastore. For more info, go to
+        // https://parse.com/docs/android/guide#local-datastore
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this);
+
+        //initialize YouTube player view
+        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
+
 
         //creating a query for retrieving YouTube vids
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("url");
@@ -189,11 +196,41 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 //			}
 //		});
 
+        switchStatus = (TextView) findViewById(R.id.switchStatus);
+        mySwitch = (Switch) findViewById(R.id.mySwitch);
+        //set the switch to ON
+        mySwitch.setChecked(true);
+        //attach a listener to check for changes in state
+        mySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked){
+                    setCollectionMode(true);
+                    switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
+                }else{
+                    setCollectionMode(false);
+                    switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
+                }
+            }
+        });
+        //check the current state before we display the screen
+        if(mySwitch.isChecked()){
+            setCollectionMode(true);
+            switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
+        }
+        else {
+            setCollectionMode(false);
+            switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
+        }
     }
 
     public void setTheID(String myID) {
         theID = myID;
         Log.d("set", "set the ID!");
+    }
+    public void setCollectionMode(Boolean mode) {
+        collectionMode = mode;
     }
 
     @Override
@@ -201,8 +238,11 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         Log.d("success", "success");
 
         if (!wasRestored) {
-            Log.d("id", theID);
-            player.cueVideo(theID); // Plays https://www.youtube.com/watch?v=theID
+            if (theID!=null) {
+                Log.d("id", theID);
+                player.cueVideo(theID); // Plays https://www.youtube.com/watch?v=theID
+            }
+
         }
     }
 
@@ -379,4 +419,3 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 		return ConnectionState.CONNECTED == client.connect().await();
 	}
 }
-
