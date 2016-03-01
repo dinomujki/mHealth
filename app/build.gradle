@@ -24,4 +24,5 @@ dependencies {
     compile 'com.parse:parse-android:1.+'
 
     compile files('libs/YouTubeAndroidPlayerApi.jar')
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }

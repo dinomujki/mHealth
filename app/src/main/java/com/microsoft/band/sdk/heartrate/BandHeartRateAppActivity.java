@@ -19,6 +19,9 @@ package com.microsoft.band.sdk.heartrate;
 
 import java.lang.ref.WeakReference;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.microsoft.band.BandClient;
 import com.microsoft.band.BandClientManager;
 import com.microsoft.band.BandException;
@@ -35,6 +38,7 @@ import com.microsoft.band.sensors.BandRRIntervalEventListener;
 import com.microsoft.band.sensors.HeartRateConsentListener;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.util.Log;
@@ -62,21 +66,22 @@ import com.google.android.youtube.player.YouTubePlayerView;
 
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import com.microsoft.band.sensors.HeartRateConsentListener;
 
 //public class BandHeartRateAppActivity extends Activity {
 public class BandHeartRateAppActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
-	private BandClient client = null;
-	private Button btnStart, btnConsent;
+    private BandClient client = null;
+    private Button btnStart, btnConsent;
 
 /*	private TextView txtStatus;
-	private TextView txtbpm;
+    private TextView txtbpm;
 	private TextView txtrr;
 	private TextView txtgsr;
 */
 
 
-//    private TextView switchStatus;
+    //    private TextView switchStatus;
     private Switch mySwitch;
     private Boolean collectionMode;
 
@@ -89,6 +94,51 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
     String theID = "FmaJow1aLPI";
     public static final int RECOVERY_REQUEST = 1;
     private YouTubePlayerView youTubeView;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client2;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client2.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "BandHeartRateApp Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.microsoft.band.sdk.heartrate/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client2, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "BandHeartRateApp Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.microsoft.band.sdk.heartrate/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client2, viewAction);
+        client2.disconnect();
+    }
 
     public final class Config {
         private Config() {
@@ -97,7 +147,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         public static final String YOUTUBE_API_KEY = "AIzaSyDL6_lgg5HEODCoIKk2vzgb2gFFPVUBDYQ";
     }
 
-	private BandHeartRateEventListener mHeartRateEventListener = new BandHeartRateEventListener() {
+    private BandHeartRateEventListener mHeartRateEventListener = new BandHeartRateEventListener() {
         @Override
         public void onBandHeartRateChanged(final BandHeartRateEvent event) {
             if (event != null) {
@@ -117,7 +167,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                 appendTogsr(Double.toString(gsr));
                 Log.d("gsr", Double.toString(gsr));
 
-                if (collectionMode&&(bpm>0)&&(rr>0)) {
+                if (collectionMode && (bpm > 0) && (rr > 0)) {
                     ParseObject testObject = new ParseObject("SensorData");
                     testObject.put("HeartRate", bpm);
                     testObject.put("GSR", gsr);
@@ -126,8 +176,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                 }
                 if (bpm > 75 && rr > 1) {
                     appendToUI("You are stressed, relax with some comedy.");
-                }
-                else {
+                } else {
                     appendToUI("You're good! You don't appear stressed!");
                 }
             }
@@ -155,29 +204,46 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         Parse.enableLocalDatastore(this);
         Parse.initialize(this);
 
-        //initialize YouTube player view
-        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
-        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
-
 
         //creating a query for retrieving YouTube vids
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("url");
-        Log.d("query", "made the query");
-        query.whereEqualTo("objectId", "61WL7CRujY"); // to grab the right one - will change later
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                if (object == null) {
-                    Log.d("read", "failed");
-                }
-                else {
-                    //you got it
-                    String theID = object.getString("vidID");
-                    setTheID(theID);
-                    Log.d("read", "passed");
-                }
-            }
-        });
+        try {
+            int count = 0;
+            count = query.count();
+            int random = (int) (Math.random() * count + 1);
+            query.whereEqualTo("index", random);
+            Log.d("At index = ", Integer.toString(random));
+            Log.d("query", "made the query");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        //query.whereEqualTo("objectId", "61WL7CRujY"); // to grab the right one - will change later
+//        query.getFirstInBackground(new GetCallback<ParseObject>() {
+//            @Override
+//            public void done(ParseObject object, ParseException e) {
+//                if (object == null) {
+//                    Log.d("read", "failed");
+//                }
+//                else {
+//                    //you got it
+//                    String theID = object.getString("vidID");
+//                    setTheID(theID);
+//                    Log.d("read", "passed");
+//                }
+//            }
+//        });
+        String vidID = "";
+        try {
+            ParseObject object = query.getFirst();
+            vidID = object.getString("vidID");
+            setTheID(vidID);
+        }
+        catch (Exception e) {
+            Log.d("Shit", "hello");
+        }
+
 
         //SHAWN: fix from here until...
 /*        txtStatus = (TextView) findViewById(R.id.txtStatus);
@@ -188,6 +254,8 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         txtgsr = (TextView) findViewById(R.id.txtgsr);
         txtStatus.setText("");
 */
+        final WeakReference<Activity> reference = new WeakReference<Activity>(this);
+        new HeartRateConsentTask().execute();
         new HeartRateSubscriptionTask().execute();
         new GsrSubscriptionTask().execute();
 //        btnStart = (Button) findViewById(R.id.btnStart);
@@ -207,30 +275,37 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
             @Override
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     setCollectionMode(true);
 //                    switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
-                }else{
+                } else {
                     setCollectionMode(false);
 //                    switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
                 }
             }
         });
         //check the current state before we display the screen
-        if(mySwitch.isChecked()){
+        if (mySwitch.isChecked()) {
             setCollectionMode(true);
- //           switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
-        }
-        else {
+            //           switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
+        } else {
             setCollectionMode(false);
- //           switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
+            //           switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
         }
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client2 = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        //initialize YouTube player view
+        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
     }
 
     public void setTheID(String myID) {
         theID = myID;
         Log.d("set", "set the ID!");
     }
+
     public void setCollectionMode(Boolean mode) {
         collectionMode = mode;
     }
@@ -238,9 +313,8 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
     @Override
     public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
         Log.d("success", "success");
-
         if (!wasRestored) {
-            if (theID!=null) {
+            if (theID != null) {
                 Log.d("id", theID);
                 player.cueVideo(theID); // Plays https://www.youtube.com/watch?v=theID
             }
@@ -267,13 +341,12 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
     }
 
 
-	
-	@Override
-	protected void onResume() {
-		super.onResume();
+    @Override
+    protected void onResume() {
+        super.onResume();
 //		txtStatus.setText("");
-	}
-	
+    }
+
 //    @Override
 //	protected void onPause() {
 //		super.onPause();
@@ -285,7 +358,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 //			}
 //		}
 //	}
-	
+
     @Override
     protected void onDestroy() {
         if (client != null) {
@@ -299,56 +372,25 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         }
         super.onDestroy();
     }
-    
-	private class HeartRateSubscriptionTask extends AsyncTask<Void, Void, Void> {
-		@Override
-		protected Void doInBackground(Void... params) {
-			try {
-				if (getConnectedBandClient()) {
-						client.getSensorManager().registerHeartRateEventListener(mHeartRateEventListener);
-                        client.getSensorManager().registerRRIntervalEventListener(mRREventListener);
-				} else {
-					appendToUI("Band isn't connected. Please make sure bluetooth is on and the band is in range.\n");
-				}
-			} catch (BandException e) {
-				String exceptionMessage="";
-				switch (e.getErrorType()) {
-				case UNSUPPORTED_SDK_VERSION_ERROR:
-					exceptionMessage = "Microsoft Health BandService doesn't support your SDK Version. Please update to latest SDK.\n";
-					break;
-				case SERVICE_ERROR:
-					exceptionMessage = "Microsoft Health BandService is not available. Please make sure Microsoft Health is installed and that you have the correct permissions.\n";
-					break;
-				default:
-					exceptionMessage = "Unknown error occured: " + e.getMessage() + "\n";
-					break;
-				}
-				appendToUI(exceptionMessage);
 
-			} catch (Exception e) {
-				appendToUI(e.getMessage());
-			}
-			return null;
-		}
-	}
-
-    private class GsrSubscriptionTask extends AsyncTask<Void, Void, Void> {
+    private class HeartRateSubscriptionTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             try {
                 if (getConnectedBandClient()) {
-                    int hardwareVersion = Integer.parseInt(client.getHardwareVersion().await());
-                    if (hardwareVersion >= 20) {
-                        appendToUI("Band is connected.\n");
-                        client.getSensorManager().registerGsrEventListener(mGsrEventListener);
+                    if (client.getSensorManager().getCurrentHeartRateConsent() == UserConsent.GRANTED) {
+                        client.getSensorManager().registerHeartRateEventListener(mHeartRateEventListener);
+                        client.getSensorManager().registerRRIntervalEventListener(mRREventListener);
                     } else {
-                        appendToUI("The Gsr sensor is not supported with your Band version. Microsoft Band 2 is required.\n");
+                        appendToUI("You have not given this application consent to access heart rate data yet."
+                                + " Please press the Heart Rate Consent button.\n");
                     }
+
                 } else {
                     appendToUI("Band isn't connected. Please make sure bluetooth is on and the band is in range.\n");
                 }
             } catch (BandException e) {
-                String exceptionMessage="";
+                String exceptionMessage = "";
                 switch (e.getErrorType()) {
                     case UNSUPPORTED_SDK_VERSION_ERROR:
                         exceptionMessage = "Microsoft Health BandService doesn't support your SDK Version. Please update to latest SDK.\n";
@@ -369,14 +411,86 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         }
     }
 
-	private void appendToUI(final String string) {
-		this.runOnUiThread(new Runnable() {
+    private class GsrSubscriptionTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                if (getConnectedBandClient()) {
+                    int hardwareVersion = Integer.parseInt(client.getHardwareVersion().await());
+                    if (hardwareVersion >= 20) {
+                        appendToUI("Band is connected.\n");
+                        client.getSensorManager().registerGsrEventListener(mGsrEventListener);
+                    } else {
+                        appendToUI("The Gsr sensor is not supported with your Band version. Microsoft Band 2 is required.\n");
+                    }
+                } else {
+                    appendToUI("Band isn't connected. Please make sure bluetooth is on and the band is in range.\n");
+                }
+            } catch (BandException e) {
+                String exceptionMessage = "";
+                switch (e.getErrorType()) {
+                    case UNSUPPORTED_SDK_VERSION_ERROR:
+                        exceptionMessage = "Microsoft Health BandService doesn't support your SDK Version. Please update to latest SDK.\n";
+                        break;
+                    case SERVICE_ERROR:
+                        exceptionMessage = "Microsoft Health BandService is not available. Please make sure Microsoft Health is installed and that you have the correct permissions.\n";
+                        break;
+                    default:
+                        exceptionMessage = "Unknown error occured: " + e.getMessage() + "\n";
+                        break;
+                }
+                appendToUI(exceptionMessage);
+
+            } catch (Exception e) {
+                appendToUI(e.getMessage());
+            }
+            return null;
+        }
+    }
+
+    private class HeartRateConsentTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                if (getConnectedBandClient()) {
+                    client.getSensorManager().requestHeartRateConsent(BandHeartRateAppActivity.this, new HeartRateConsentListener() {
+                        @Override
+                        public void userAccepted(boolean consentGiven) {
+                        }
+                    });
+                } else {
+                    appendToUI("Band isn't connected. Please make sure bluetooth is on and the band is in range.\n");
+                }
+            } catch (BandException e) {
+                String exceptionMessage = "";
+                switch (e.getErrorType()) {
+                    case UNSUPPORTED_SDK_VERSION_ERROR:
+                        exceptionMessage = "Microsoft Health BandService doesn't support your SDK Version. Please update to latest SDK.\n";
+                        break;
+                    case SERVICE_ERROR:
+                        exceptionMessage = "Microsoft Health BandService is not available. Please make sure Microsoft Health is installed and that you have the correct permissions.\n";
+                        break;
+                    default:
+                        exceptionMessage = "Unknown error occured: " + e.getMessage() + "\n";
+                        break;
+                }
+                appendToUI(exceptionMessage);
+
+            } catch (Exception e) {
+                appendToUI(e.getMessage());
+            }
+            return null;
+        }
+    }
+
+    private void appendToUI(final String string) {
+        this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 //            	txtStatus.setText(string);
             }
         });
-	}
+    }
 
     private void appendTobpm(final String string) {
         this.runOnUiThread(new Runnable() {
@@ -404,20 +518,20 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
             }
         });
     }
-    
-	private boolean getConnectedBandClient() throws InterruptedException, BandException {
-		if (client == null) {
-			BandInfo[] devices = BandClientManager.getInstance().getPairedBands();
-			if (devices.length == 0) {
-				appendToUI("Band isn't paired with your phone.\n");
-				return false;
-			}
-			client = BandClientManager.getInstance().create(getBaseContext(), devices[0]);
-		} else if (ConnectionState.CONNECTED == client.getConnectionState()) {
-			return true;
-		}
-		
-		appendToUI("Band is connecting...\n");
-		return ConnectionState.CONNECTED == client.connect().await();
-	}
+
+    private boolean getConnectedBandClient() throws InterruptedException, BandException {
+        if (client == null) {
+            BandInfo[] devices = BandClientManager.getInstance().getPairedBands();
+            if (devices.length == 0) {
+                appendToUI("Band isn't paired with your phone.\n");
+                return false;
+            }
+            client = BandClientManager.getInstance().create(getBaseContext(), devices[0]);
+        } else if (ConnectionState.CONNECTED == client.getConnectionState()) {
+            return true;
+        }
+
+        appendToUI("Band is connecting...\n");
+        return ConnectionState.CONNECTED == client.connect().await();
+    }
 }
