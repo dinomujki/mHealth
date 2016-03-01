@@ -1,13 +1,7 @@
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="15dp"
     android:orientation="vertical" >
-
-
-
-
 
     <!--<Button-->
         <!--android:id="@+id/btnStart"-->
@@ -16,13 +10,13 @@
         <!--android:text="@string/start" />-->
 
 
-    <TextView
+<!--    <TextView
         android:id="@+id/txtStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text="" /> -->
 
-
+<!--
     <TextView
         android:id="@+id/txtbpm"
         android:layout_width="match_parent"
@@ -38,24 +32,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="" />
-
+-->
     <Switch
         android:id="@+id/mySwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
         android:text="Data Collection" />
+    <!--
     <TextView
         android:id="@+id/switchStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/mySwitch"
-        android:layout_marginTop="22dp"
         android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium" /> -->
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/youtube_view"

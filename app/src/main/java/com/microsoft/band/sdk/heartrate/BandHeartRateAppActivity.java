@@ -68,14 +68,15 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 
 	private BandClient client = null;
 	private Button btnStart, btnConsent;
-	private TextView txtStatus;
+
+/*	private TextView txtStatus;
 	private TextView txtbpm;
 	private TextView txtrr;
 	private TextView txtgsr;
+*/
 
 
-
-    private TextView switchStatus;
+//    private TextView switchStatus;
     private Switch mySwitch;
     private Boolean collectionMode;
 
@@ -179,13 +180,14 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         });
 
         //SHAWN: fix from here until...
-        txtStatus = (TextView) findViewById(R.id.txtStatus);
+/*        txtStatus = (TextView) findViewById(R.id.txtStatus);
         txtbpm = (TextView) findViewById(R.id.txtbpm);
 
         txtrr = (TextView) findViewById(R.id.txtrr);
 
         txtgsr = (TextView) findViewById(R.id.txtgsr);
         txtStatus.setText("");
+*/
         new HeartRateSubscriptionTask().execute();
         new GsrSubscriptionTask().execute();
 //        btnStart = (Button) findViewById(R.id.btnStart);
@@ -196,7 +198,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 //			}
 //		});
 
-        switchStatus = (TextView) findViewById(R.id.switchStatus);
+//        switchStatus = (TextView) findViewById(R.id.switchStatus);
         mySwitch = (Switch) findViewById(R.id.mySwitch);
         //set the switch to ON
         mySwitch.setChecked(true);
@@ -207,21 +209,21 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                                          boolean isChecked) {
                 if(isChecked){
                     setCollectionMode(true);
-                    switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
+//                    switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
                 }else{
                     setCollectionMode(false);
-                    switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
+//                    switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
                 }
             }
         });
         //check the current state before we display the screen
         if(mySwitch.isChecked()){
             setCollectionMode(true);
-            switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
+ //           switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
         }
         else {
             setCollectionMode(false);
-            switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
+ //           switchStatus.setText("Data collection mode set to: " + collectionMode.toString());
         }
     }
 
@@ -269,7 +271,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 	@Override
 	protected void onResume() {
 		super.onResume();
-		txtStatus.setText("");
+//		txtStatus.setText("");
 	}
 	
 //    @Override
@@ -371,7 +373,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 		this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-            	txtStatus.setText(string);
+//            	txtStatus.setText(string);
             }
         });
 	}
@@ -380,7 +382,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                txtbpm.setText("BPM: " + string);
+//                txtbpm.setText("BPM: " + string);
             }
         });
     }
@@ -389,7 +391,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                txtgsr.setText("GSR: " + string);
+//                txtgsr.setText("GSR: " + string);
             }
         });
     }
@@ -398,7 +400,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                txtrr.setText("RR: " + string);
+//                txtrr.setText("RR: " + string);
             }
         });
     }
