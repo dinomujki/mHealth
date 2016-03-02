@@ -1,5 +1,31 @@
 [
     {
+        "outputFile": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 208
+                },
+                "from": {
+                    "file": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values-v14\\styles.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 225,
+                        "endLine": 9,
+                        "endColumn": 12,
+                        "endOffset": 380
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Samantha\\Documents\\mHealth\\clone\\mHealth\\app\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
         "map": [
             {
@@ -26,7 +52,7 @@
         ]
     },
     {
-        "outputFile": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
+        "outputFile": "/Users/Mujki/Desktop/mHealth/app/build/intermediates/res/merged/debug/values-v14/values-v14.xml",
         "map": [
             {
                 "to": {
@@ -38,7 +64,7 @@
                     "endOffset": 208
                 },
                 "from": {
-                    "file": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values-v14\\styles.xml",
+                    "file": "/Users/Mujki/Desktop/mHealth/app/src/main/res/values-v14/styles.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -78,7 +104,7 @@
         ]
     },
     {
-        "outputFile": "/Users/Mujki/Desktop/mHealth/app/build/intermediates/res/merged/debug/values-v14/values-v14.xml",
+        "outputFile": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/build/intermediates/res/merged/debug/values-v14/values-v14.xml",
         "map": [
             {
                 "to": {
@@ -90,7 +116,7 @@
                     "endOffset": 208
                 },
                 "from": {
-                    "file": "/Users/Mujki/Desktop/mHealth/app/src/main/res/values-v14/styles.xml",
+                    "file": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/src/main/res/values-v14/styles.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,

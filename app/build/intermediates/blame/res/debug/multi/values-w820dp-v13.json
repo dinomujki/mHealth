@@ -1,5 +1,29 @@
 [
     {
+        "outputFile": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/build/intermediates/res/merged/debug/values-w820dp-v13/values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "/Users/shawncaeiro/Desktop/BandHeartRateApp2/app/src/main/res/values-w820dp/dimens.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 310,
+                        "endColumn": 57,
+                        "endOffset": 363
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
@@ -12,54 +36,6 @@
                 },
                 "from": {
                     "file": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 310,
-                        "endColumn": 57,
-                        "endOffset": 363
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 57,
-                    "endOffset": 108
-                },
-                "from": {
-                    "file": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 310,
-                        "endColumn": 57,
-                        "endOffset": 363
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "/Users/Mujki/Desktop/mHealth/app/build/intermediates/res/merged/debug/values-w820dp-v13/values-w820dp-v13.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 57,
-                    "endOffset": 108
-                },
-                "from": {
-                    "file": "/Users/Mujki/Desktop/mHealth/app/src/main/res/values-w820dp/dimens.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -96,7 +72,7 @@
         ]
     },
     {
-        "outputFile": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "outputFile": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -107,7 +83,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "file": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\shawncaeiro\\Desktop\\BandHeartRateApp2\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -132,6 +108,54 @@
                 },
                 "from": {
                     "file": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\Samantha\\Documents\\mHealth\\mHealth\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 310,
+                        "endColumn": 57,
+                        "endOffset": 363
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13\\values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "/Users/Mujki/Desktop/mHealth/C:\\Users\\Mujki\\Desktop\\mHealth\\C:\\Users\\Mujki\\Desktop\\EECS 395\\BandHeartRateApp2\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 310,
+                        "endColumn": 57,
+                        "endOffset": 363
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/Mujki/Desktop/mHealth/app/build/intermediates/res/merged/debug/values-w820dp-v13/values-w820dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "/Users/Mujki/Desktop/mHealth/app/src/main/res/values-w820dp/dimens.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,

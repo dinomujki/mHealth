@@ -39,6 +39,7 @@ import com.microsoft.band.sensors.HeartRateConsentListener;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Pair;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.util.Log;
@@ -73,18 +74,23 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 
     private BandClient client = null;
     private Button btnStart, btnConsent;
-
-/*	private TextView txtStatus;
+    /*	private TextView txtStatus;
     private TextView txtbpm;
 	private TextView txtrr;
 	private TextView txtgsr;
 */
+    private TextView isStressed;
 
 
     //    private TextView switchStatus;
     private Switch mySwitch;
     private Boolean collectionMode;
 
+    private Boolean getRest = false;
+    private double restBPM = 0;
+    private double restGSR = 0;
+    private double restRR = 0;
+    private double restCount = 0;
 
     private int bpm = 0;
     private double gsr = 0.0;
@@ -174,14 +180,21 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                     testObject.put("RR", rr);
                     testObject.saveInBackground();
                 }
-                if (bpm > 75 && rr > 1) {
-                    appendToUI("You are stressed, relax with some comedy.");
+                if (getRest) {
+                    restCount += 1;
+                    restRR = (restRR * (restCount -1) / restCount) + (rr / restCount);
+                    restBPM = (restBPM * (restCount -1) / restCount) + (float)(bpm / restCount);
+                    restGSR = (restGSR * (restCount -1) / restCount) + (gsr / restCount);
+                }
+                if (bpm > restBPM*1.2 && rr > restRR*1.2 && gsr > restGSR*1.2) {
+                    appendToStressed("You are stressed, relax with some comedy.");
                 } else {
-                    appendToUI("You're good! You don't appear stressed!");
+                    appendToStressed("You're good! You don't appear stressed!");
                 }
             }
         }
     };
+
 
     private BandRRIntervalEventListener mRREventListener = new BandRRIntervalEventListener() {
         @Override
@@ -246,6 +259,20 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 
 
         //SHAWN: fix from here until...
+        final Button btnRest = (Button) findViewById(R.id.restPulse);
+        btnRest.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (getRest) {
+                    getRest = false;
+                    btnRest.setText("Begin Rest Stats");
+                }
+                else {
+                    getRest = true;
+                    btnRest.setText("End Rest Stats");
+                }
+            }
+        });
+
 /*        txtStatus = (TextView) findViewById(R.id.txtStatus);
         txtbpm = (TextView) findViewById(R.id.txtbpm);
 
@@ -488,6 +515,15 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
             @Override
             public void run() {
 //            	txtStatus.setText(string);
+            }
+        });
+    }
+
+    private void appendToStressed(final String string) {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+            	isStressed.setText(string);
             }
         });
     }
