@@ -52,6 +52,7 @@ import android.os.AsyncTask;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import java.util.*;
 
 import com.parse.GetCallback;
 import com.parse.ParseObject;
@@ -65,6 +66,9 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayer.Provider;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.google.android.youtube.player.YouTubePlayer.ErrorReason;
+import com.google.android.youtube.player.YouTubePlayer.PlaybackEventListener;
+import com.google.android.youtube.player.YouTubePlayer.PlayerStateChangeListener;
 
 
 import android.widget.CompoundButton;
@@ -108,6 +112,8 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client2;
+    private int videoCount;
+    private List<ParseObject> videoList;
 
     @Override
     public void onStart() {
@@ -224,9 +230,10 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         //creating a query for retrieving YouTube vids
         final ParseQuery<ParseObject> query = ParseQuery.getQuery("url");
         try {
-            int count = 0;
-            count = query.count();
-            int random = (int) (Math.random() * count + 1);
+            videoCount = query.count();
+            videoList = query.find();
+            int random = (int) (Math.random() * videoCount);
+            setTheID(videoList.get(random).getString("vidID"));
             query.whereEqualTo("index", random);
             Log.d("At index = ", Integer.toString(random));
             Log.d("query", "made the query");
@@ -250,7 +257,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 //                }
 //            }
 //        });
-        String vidID = "";
+        String vidID;
         try {
             ParseObject object = query.getFirst();
             vidID = object.getString("vidID");
@@ -259,6 +266,9 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         catch (Exception e) {
             Log.d("Shit", "hello");
         }
+
+        isStressed = (TextView) findViewById(R.id.isStressed);
+
 
 
         //SHAWN: fix from here until...
@@ -281,7 +291,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                globalPlayer.cueVideo(theID);
+
                                 dialog.dismiss();
                             }
                         });
@@ -367,6 +377,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         //initialize YouTube player view
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
+
     }
 
     public void setTheID(String myID) {
@@ -381,11 +392,12 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
     @Override
     public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
         Log.d("success", "success");
+        player.setPlayerStateChangeListener(playerStateChangeListener);
         if (!wasRestored) {
             if (theID != null) {
                 Log.d("id", theID);
                 globalPlayer = player;
-                //player.cueVideo(theID); // Plays https://www.youtube.com/watch?v=theID
+                globalPlayer.cueVideo(theID); // Plays https://www.youtube.com/watch?v=theID
             }
 
         }
@@ -396,6 +408,39 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         String error = String.format("Error initializing YouTube player", errorReason.toString());
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
+
+    private PlayerStateChangeListener playerStateChangeListener = new PlayerStateChangeListener() {
+
+        @Override
+        public void onAdStarted() {
+            
+        }
+
+        @Override
+        public void onError(ErrorReason arg0) {
+        }
+
+        @Override
+        public void onLoaded(String arg0) {
+        }
+
+        @Override
+        public void onLoading() {
+        }
+
+        @Override
+        public void onVideoEnded() {
+            int random = (int) (Math.random() * videoCount);
+            setTheID(videoList.get(random).getString("vidID"));
+            globalPlayer.cueVideo(theID);
+        }
+
+        @Override
+        public void onVideoStarted() {
+        }
+    };
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -560,7 +605,6 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
             }
         });
     }
-
     private void appendToStressed(final String string) {
         this.runOnUiThread(new Runnable() {
             @Override
