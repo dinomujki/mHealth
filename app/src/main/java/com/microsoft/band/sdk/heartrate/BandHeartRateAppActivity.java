@@ -97,6 +97,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
     private double restGSR = 0;
     private double restRR = 0;
     private double restCount = 0;
+    private Boolean videoMode = false;
 
     private int bpm = 0;
     private double gsr = 0.0;
@@ -195,7 +196,9 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                     restBPM = (restBPM * (restCount -1) / restCount) + (float)(bpm / restCount);
                     restGSR = (restGSR * (restCount -1) / restCount) + (gsr / restCount);
                 }
-                if (bpm > restBPM*1.2 && rr > restRR*1.2 && gsr > restGSR*1.2) {
+                if (restBPM != 0 && !getRest && !videoMode && (bpm > restBPM*1.2 || rr > restRR*1.2 || gsr > restGSR*1.2)) {
+                    createAlert();
+                    videoMode = true;
                     appendToStressed("You are stressed, relax with some comedy.");
                 } else {
                     appendToStressed("You're good! You don't appear stressed!");
@@ -284,19 +287,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                     btnRest.setText("End Rest Stats");
                 }
 
-                // Make an alert!
-                AlertDialog alertDialog = new AlertDialog.Builder(BandHeartRateAppActivity.this).create();
-                alertDialog.setTitle("You are stressed!");
-                alertDialog.setMessage("Comedy has been shown to decrease stress, so watch a video!");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
 
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
-                // End Make an Alert
 
 /*
                 AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
@@ -323,6 +314,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                         .show();*/
             }
         });
+
 
 /*        txtStatus = (TextView) findViewById(R.id.txtStatus);
         txtbpm = (TextView) findViewById(R.id.txtbpm);
@@ -380,6 +372,22 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 
     }
 
+    private void createAlert() {
+        // Make an alert!
+        AlertDialog alertDialog = new AlertDialog.Builder(BandHeartRateAppActivity.this).create();
+        alertDialog.setTitle("You are stressed!");
+        alertDialog.setMessage("Comedy has been shown to decrease stress, so watch a video!");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+        // End Make an Alert
+    }
+
     public void setTheID(String myID) {
         theID = myID;
         Log.d("set", "set the ID!");
@@ -430,6 +438,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 
         @Override
         public void onVideoEnded() {
+            videoMode = false;
             int random = (int) (Math.random() * videoCount);
             setTheID(videoList.get(random).getString("vidID"));
             globalPlayer.cueVideo(theID);
