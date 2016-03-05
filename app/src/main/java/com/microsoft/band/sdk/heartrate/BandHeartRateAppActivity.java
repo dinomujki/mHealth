@@ -37,6 +37,8 @@ import com.microsoft.band.sensors.BandRRIntervalEvent;
 import com.microsoft.band.sensors.BandRRIntervalEventListener;
 import com.microsoft.band.sensors.HeartRateConsentListener;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Pair;
@@ -100,6 +102,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
     String theID = "FmaJow1aLPI";
     public static final int RECOVERY_REQUEST = 1;
     private YouTubePlayerView youTubeView;
+    private YouTubePlayer globalPlayer;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -270,6 +273,44 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                     getRest = true;
                     btnRest.setText("End Rest Stats");
                 }
+
+                // Make an alert!
+                AlertDialog alertDialog = new AlertDialog.Builder(BandHeartRateAppActivity.this).create();
+                alertDialog.setTitle("You are stressed!");
+                alertDialog.setMessage("Comedy has been shown to decrease stress, so watch a video!");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                globalPlayer.cueVideo(theID);
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+                // End Make an Alert
+
+/*
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                builder.setMessage("hi")
+                        .setTitle("test");
+
+                // 3. Get the AlertDialog from create()
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                new AlertDialog.Builder(v)
+                        .setTitle("Delete entry")
+                        .setMessage("Are you sure you want to delete this entry?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();*/
             }
         });
 
@@ -343,7 +384,8 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         if (!wasRestored) {
             if (theID != null) {
                 Log.d("id", theID);
-                player.cueVideo(theID); // Plays https://www.youtube.com/watch?v=theID
+                globalPlayer = player;
+                //player.cueVideo(theID); // Plays https://www.youtube.com/watch?v=theID
             }
 
         }
