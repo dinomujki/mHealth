@@ -58,6 +58,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import java.util.*;
+import android.view.Window;
 
 import com.parse.GetCallback;
 import com.parse.ParseObject;
@@ -229,7 +230,9 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
 
         // [Optional] Power your app with Local Datastore. For more info, go to
         // https://parse.com/docs/android/guide#local-datastore
