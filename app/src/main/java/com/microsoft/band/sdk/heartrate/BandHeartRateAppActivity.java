@@ -38,9 +38,14 @@ import com.microsoft.band.sensors.BandRRIntervalEventListener;
 import com.microsoft.band.sensors.HeartRateConsentListener;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
 import android.util.Pair;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -196,11 +201,13 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                     restBPM = (restBPM * (restCount -1) / restCount) + (float)(bpm / restCount);
                     restGSR = (restGSR * (restCount -1) / restCount) + (gsr / restCount);
                 }
-                if (restBPM != 0 && !getRest && !videoMode && (bpm > restBPM*1.2 || rr > restRR*1.2 || gsr > restGSR*1.2)) {
-                    createAlert();
+                if (restBPM != 0 && !getRest && !videoMode && (bpm > restBPM*1.2 || rr > restRR*1.2 || gsr > restGSR*2.0)) {
+                    showNotification();
+                    Log.d("notif", "should've worked...");
                     videoMode = true;
                     appendToStressed("You are stressed, relax with some comedy.");
                 } else {
+                    Log.d("what", "the fuck");
                     appendToStressed("You're good! You don't appear stressed!");
                 }
             }
@@ -286,34 +293,12 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                     getRest = true;
                     btnRest.setText("End Rest Stats");
                 }
+                //showNotification();
 
-
-
-/*
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                builder.setMessage("hi")
-                        .setTitle("test");
-
-                // 3. Get the AlertDialog from create()
-                AlertDialog dialog = builder.create();
-                dialog.show();
-                new AlertDialog.Builder(v)
-                        .setTitle("Delete entry")
-                        .setMessage("Are you sure you want to delete this entry?")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // continue with delete
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // do nothing
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();*/
             }
         });
+
+
 
 
 /*        txtStatus = (TextView) findViewById(R.id.txtStatus);
@@ -386,6 +371,22 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                 });
         alertDialog.show();
         // End Make an Alert
+    }
+
+    public void showNotification() {
+        PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 0, new Intent(getApplicationContext(), BandHeartRateAppActivity.class), 0);
+        Resources r = getResources();
+        Notification notification = new NotificationCompat.Builder(getApplicationContext())
+                .setTicker("Stress Monitor Alerted: Please go to Band Heart Rate Sample and watch comedy content.")
+                .setSmallIcon(android.R.drawable.ic_menu_report_image)
+                .setContentTitle("Take a break and watch this video")
+                .setContentText("Please take a break and watch this video")
+                .setContentIntent(pi)
+                .setAutoCancel(true)
+                .build();
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(0, notification);
     }
 
     public void setTheID(String myID) {
