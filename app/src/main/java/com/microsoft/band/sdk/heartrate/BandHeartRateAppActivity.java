@@ -18,7 +18,6 @@
 package com.microsoft.band.sdk.heartrate;
 
 import java.lang.ref.WeakReference;
-
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -90,8 +89,9 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
     private TextView txtbpm;
 	private TextView txtrr;
 	private TextView txtgsr;
-*/
+    */
     private TextView isStressed;
+    private Boolean consented = false;
 
 
     //    private TextView switchStatus;
@@ -208,7 +208,6 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                     videoMode = true;
                     appendToStressed("You are stressed, relax with some comedy.");
                 } else {
-                    Log.d("what", "the fuck");
                     appendToStressed("You're good! You don't appear stressed!");
                 }
             }
@@ -236,8 +235,12 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 
         // [Optional] Power your app with Local Datastore. For more info, go to
         // https://parse.com/docs/android/guide#local-datastore
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this);
+
+        try {
+            Parse.initialize(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         //creating a query for retrieving YouTube vids
@@ -312,9 +315,10 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
         txtgsr = (TextView) findViewById(R.id.txtgsr);
         txtStatus.setText("");
 */
-        final WeakReference<Activity> reference = new WeakReference<Activity>(this);
-        new HeartRateConsentTask().execute();
-        new HeartRateSubscriptionTask().execute();
+        //final WeakReference<Activity> reference = new WeakReference<Activity>(this);
+        if (!consented) {
+            new HeartRateConsentTask().execute();
+        }
         new GsrSubscriptionTask().execute();
 //        btnStart = (Button) findViewById(R.id.btnStart);
 //        btnStart.setOnClickListener(new OnClickListener() {
@@ -474,9 +478,9 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 //		txtStatus.setText("");
     }
 
-//    @Override
-//	protected void onPause() {
-//		super.onPause();
+    @Override
+	protected void onPause() {
+		super.onPause();
 //		if (client != null) {
 //			try {
 //				client.getSensorManager().unregisterHeartRateEventListener(mHeartRateEventListener);
@@ -484,7 +488,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
 //				appendToUI(e.getMessage());
 //			}
 //		}
-//	}
+	}
 
     @Override
     protected void onDestroy() {
@@ -583,6 +587,8 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                     client.getSensorManager().requestHeartRateConsent(BandHeartRateAppActivity.this, new HeartRateConsentListener() {
                         @Override
                         public void userAccepted(boolean consentGiven) {
+                            new HeartRateSubscriptionTask().execute();
+                            consented = true;
                         }
                     });
                 } else {
