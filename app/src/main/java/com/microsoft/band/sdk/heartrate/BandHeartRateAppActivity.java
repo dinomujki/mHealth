@@ -99,6 +99,7 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
     private Boolean collectionMode;
 
     private Boolean getRest = false;
+    private Boolean getStress = false;
     private double restBPM = 0;
     private double restGSR = 0;
     private double restRR = 0;
@@ -190,25 +191,48 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
                 Log.d("gsr", Double.toString(gsr));
 
                 if (collectionMode && (bpm > 0) && (rr > 0)) {
-                    ParseObject testObject = new ParseObject("SensorData");
-                    testObject.put("HeartRate", bpm);
-                    testObject.put("GSR", gsr);
-                    testObject.put("RR", rr);
-                    testObject.saveInBackground();
-                }
-                if (getRest) {
-                    restCount += 1;
-                    restRR = (restRR * (restCount -1) / restCount) + (rr / restCount);
-                    restBPM = (restBPM * (restCount -1) / restCount) + (float)(bpm / restCount);
-                    restGSR = (restGSR * (restCount -1) / restCount) + (gsr / restCount);
+                    if (getRest) {
+                        ParseObject testObject = new ParseObject("Rest");
+                        testObject.put("HeartRate", bpm);
+                        testObject.put("GSR", gsr);
+                        testObject.put("RR", rr);
+                        testObject.saveInBackground();
+
+                        restCount += 1;
+                        restRR = (restRR * (restCount -1) / restCount) + (rr / restCount);
+                        restBPM = (restBPM * (restCount -1) / restCount) + (float)(bpm / restCount);
+                        restGSR = (restGSR * (restCount -1) / restCount) + (gsr / restCount);
+                    }
+                    else if (getStress) {
+                            ParseObject testObject = new ParseObject("Stress");
+                            testObject.put("HeartRate", bpm);
+                            testObject.put("GSR", gsr);
+                            testObject.put("RR", rr);
+                            testObject.saveInBackground();
+
+//                            restCount += 1;
+//                            restRR = (restRR * (restCount -1) / restCount) + (rr / restCount);
+//                            restBPM = (restBPM * (restCount -1) / restCount) + (float)(bpm / restCount);
+//                            restGSR = (restGSR * (restCount -1) / restCount) + (gsr / restCount);
+
+                    }
+                    else {
+                        ParseObject testObject = new ParseObject("SensorData");
+                        testObject.put("HeartRate", bpm);
+                        testObject.put("GSR", gsr);
+                        testObject.put("RR", rr);
+                        testObject.saveInBackground();
+
+
+                    }
                 }
                 if (restBPM != 0 && !getRest && !videoMode && (bpm > restBPM*1.2 || rr > restRR*1.2 || gsr > restGSR*2.0)) {
                     showNotification();
                     Log.d("notif", "should've worked...");
                     videoMode = true;
-                    appendToStressed("You are stressed, relax with some comedy.");
+                    //appendToStressed("You are stressed, relax with some comedy.");
                 } else {
-                    appendToStressed("You're good! You don't appear stressed!");
+                    //appendToStressed("You're good! You don't appear stressed!");
                 }
             }
         }
@@ -283,21 +307,37 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
             Log.d("Shit", "hello");
         }
 
-        isStressed = (TextView) findViewById(R.id.isStressed);
+        //isStressed = (TextView) findViewById(R.id.isStressed);
 
 
 
         //SHAWN: fix from here until...
-        final Button btnRest = (Button) findViewById(R.id.restPulse);
+        final Button btnRest = (Button) findViewById(R.id.rest);
         btnRest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (getRest) {
                     getRest = false;
-                    btnRest.setText("Begin Rest Stats");
+                    btnRest.setText("Get Rest Stats");
                 }
                 else {
                     getRest = true;
-                    btnRest.setText("End Rest Stats");
+                    btnRest.setText("Stop");
+                }
+                //showNotification();
+
+            }
+        });
+
+        final Button btnStress = (Button) findViewById(R.id.stress);
+        btnStress.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (getStress) {
+                    getStress = false;
+                    btnStress.setText("Get Stressed Stats");
+                }
+                else {
+                    getStress = true;
+                    btnStress.setText("Stop");
                 }
                 //showNotification();
 
@@ -624,14 +664,14 @@ public class BandHeartRateAppActivity extends YouTubeBaseActivity implements You
             }
         });
     }
-    private void appendToStressed(final String string) {
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-            	isStressed.setText(string);
-            }
-        });
-    }
+//    private void appendToStressed(final String string) {
+//        this.runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//            	isStressed.setText(string);
+//            }
+//        });
+//    }
 
     private void appendTobpm(final String string) {
         this.runOnUiThread(new Runnable() {
